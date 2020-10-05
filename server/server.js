@@ -13,11 +13,16 @@ const server = new ApolloServer({
     resolvers:{
         Query,
         Mutation
+    },
+    context:({ req })=>{
+
+        req.headers.authorization = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjdhN2NhNDA2YjkxYWFmNDE2NTBlOWYiLCJlbWFpbCI6InN0ZXZlQGdtYWlsLmNvbSIsImlhdCI6MTYwMTg2MjgyMCwiZXhwIjoxNjAyNDY3NjIwfQ.RqTtmtYxfH6zohrCllmZkgCSocR9d-tMaQu2Hfu6mzE'
+
+        return { req }
     }
 });
 
 server.applyMiddleware({ app });
-
 
 // graphuser  :  LfLXerBbVepf8U7y
 const PORT = process.env.PORT || 5000;
