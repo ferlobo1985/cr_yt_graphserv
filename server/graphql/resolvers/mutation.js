@@ -8,11 +8,22 @@ module.exports = {
                     email: args.fields.email,
                     password:args.fields.password
                 });
+
+                const getToken = await user.generateToken();
+                if(!getToken) { throw new Error('Oh snap');}
+
                 const result = await user.save();
                 return { ...result._doc }
            } catch(err){
                throw err
            }
+        },
+        signIn: async( parent, args, context, info)=>{
+            try {
+
+            } catch(err) {
+                throw err;
+            }
         }
     }
 }

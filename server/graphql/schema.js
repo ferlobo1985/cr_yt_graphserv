@@ -6,6 +6,7 @@ const typeDefs =  gql`
     }
 
     type Mutation {
+        signIn( fields: AuthInput! ):User!
         signUp( fields: AuthInput! ):User!
     }
 
