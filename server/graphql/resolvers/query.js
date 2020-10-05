@@ -2,8 +2,8 @@
 
 module.exports = {
     Query: {
-        hello:()=>{
-            return 'hello back'
-        }
+        // hello:()=>{
+        //     return 'hello back'
+        // }
     }
 }
