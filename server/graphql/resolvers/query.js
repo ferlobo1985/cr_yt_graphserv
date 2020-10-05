@@ -1,5 +1,6 @@
 const { AuthenticationError, ApolloError } = require('apollo-server-express')
 const { User } = require('../../models/user');
+const { Post } = require('../../models/post');
 
 const authorize = require('../../utils/auth');
 const { userOwnerShip } = require('../../utils/tools');
@@ -15,6 +16,16 @@ module.exports = {
                 throw new AuthenticationError('You dont own this post');
 
             return user;
+        },
+        findPostById: async( parent, args, context, info )=> {
+            const req = authorize(context.req);
+            const post =  await Post.findOne({'_id': args._id });
+            if(!post) throw new ApolloError('No post found');
+
+            if(!userOwnerShip( req, post.author )) 
+            throw new AuthenticationError('You dont own this post');
+
+            return post;
         }
     }
 }

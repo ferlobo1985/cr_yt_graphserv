@@ -1,4 +1,6 @@
 const { User } = require('../../models/user');
+const { Post } = require('../../models/post');
+const authorize = require('../../utils/auth');
 
 module.exports = {
     Mutation: {
@@ -37,6 +39,21 @@ module.exports = {
             } catch(err) {
                 throw err;
             }
+        },
+        createPost: async( parent, args, context, info)=> {
+            try{
+                const req = authorize(context.req);
+
+                const post = new Post({
+                    ...args.fields,
+                    author: req._id
+                });
+                const result = await post.save();
+                return { ...result._doc}
+            } catch(err){
+                throw err;
+            }
         }
+        
     }
 }
