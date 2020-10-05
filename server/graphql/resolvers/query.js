@@ -22,8 +22,8 @@ module.exports = {
             const post =  await Post.findOne({'_id': args._id });
             if(!post) throw new ApolloError('No post found');
 
-            if(!userOwnerShip( req, post.author )) 
-            throw new AuthenticationError('You dont own this post');
+          //  if(!userOwnerShip( req, post.author )) 
+          //  throw new AuthenticationError('You dont own this post');
 
             return post;
         }

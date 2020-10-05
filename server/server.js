@@ -5,6 +5,8 @@ const { ApolloServer } = require('apollo-server-express');
 const typeDefs = require('./graphql/schema');
 const { Query } = require('./graphql/resolvers/query');
 const { Mutation } = require('./graphql/resolvers/mutation');
+const { User } = require('./graphql/resolvers/user');
+const { Post } = require('./graphql/resolvers/post');
 
 const app = express();
 
@@ -12,7 +14,9 @@ const server = new ApolloServer({
     typeDefs,
     resolvers:{
         Query,
-        Mutation
+        Mutation,
+        User,
+        Post
     },
     context:({ req })=>{
 

@@ -17,13 +17,14 @@ const typeDefs =  gql`
         email: String!
         password: String
         token:String
+        posts:[Post!]
     }
 
     type Post {
         _id:ID!
         title: String!
         content: String!
-        author:String
+        author:User!
     }
 
     input AuthInput {
